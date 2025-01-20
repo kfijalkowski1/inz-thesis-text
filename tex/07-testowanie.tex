@@ -1,0 +1,25 @@
+\newpage
+\section{Testowanie}
+W ramach projektu zostały wykonane 2 typy testów: jednostkowe oraz manualne. Aplikacja EMS-API była testowana z użyciem testów jednostkowych, natomiast interfejs użytkownika z użyciem testów manualnych. Istnieją narzędzia umożliwiające testowanie interfejsów internetowych, takie jak: selenium web driver, czy Playwrite, aczkolwiek w tak wczesnej fazie projektu, przy częstych zmianach interfejsu, dogodniejsze jest zastosowanie testów manualnych. Czas i zasoby poświęcone na implementację poprawnych testów interfejsu mogłyby zająć o wiele dłużej, niż czas poświęcony na regularne testowanie manualne. Testy manualne interfejsu użytkownika były wykonywane zgodnie z instrukcją interfejsu użytkownika.
+\subsection{Implementacja testów jednostkowych}
+Testy jednostkowe zostały wykonane za pomocą biblioteki pytest-sqlalchemy-mock. Biblioteka ta mockuje połączenie do bazy danych w SQLAlchemy używając technologii pytest oraz fixtures. Dzięki temu działaniu, w momencie pisania testu jednostkowego, do funkcji przekazywany jest argument "mocked\_session", dzięki któremu wykonujemy funkcje na zmockowanej bazie. Relacje i dane początkowe w bazie zdefiniowane są za pomocą słownika, którego fragment znajduje się poniżej.
+\begin{minted}{python}
+mock_db = {
+  "estate": [
+      {
+          "id": 1,
+          "name": "Test Estate",
+          "description": "Test Estate Description"
+      }...
+  ],
+  "users": [
+      { ...
+\end{minted}
+Należy zauważyć, że rozwiązanie to posiada pewne ograniczenia, mianowicie, aby mockować bazę, biblioteka ta wykorzystuje sql-light, który nie wspiera wszystkich typów danych, wspieranych natomiast w bazach Postgres. Takim przykładem jest typ UUID, który używany jest w projekcie do dodawania nowych obiektów w bazie. Poniżej znajduje się przykładowy test.
+\begin{minted}{python}
+def test_get_post(mocked_session):
+    post = get_post(mocked_session, "1")
+    assert post.title == "Test Post"
+    assert post.description == "Test Post Description"
+    assert post.author_id == "1"
+\end{minted}

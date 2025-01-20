@@ -1,0 +1,20 @@
+\newpage 
+\section{Metodologia wytwarzania}
+W ramach tworzenia projektu  wytworzone zostały 3 repozytoria. Istnieją dwa główne powody ich rozdzielenia: każde repozytorium ma różniący się potok ciągłej integracji/ciągłego wdrażania, oraz każde repozytorium jest niezależnym modułem. Taki podział umożliwia również lepsze dbanie o porządek w poszczególnych modułach. Wszystkie repozytoria znajdują się na publicznym GitHub'ie, aby każdy miał do nich dostęp. 
+
+Pierwszym z trzech repozytoriów jest repozytorium zawierające kod implementujący REST API napisany w Pythonie z użyciem FastApi oraz SQLAlchemy.
+
+Drugim jest repozytorium zawierające kod implementujący interfejs użytkownika zaimplementowany z użyciem TypeScript'u, React-a oraz Tailwind'a.
+
+Trzecim z nich jest repozytorium zawierające całą konfigurację wdrożenia, oraz detaliczną instrukcję, w jaki sposób to wdrożenie powinno zostać wykonane. Używane między innymi technologie to: Kubernetes, helm, ngnix.
+
+Podczas tworzenia oprogramowania, z uwagi na  pracę jednoosobową, nie było potrzeby wykorzystywania metodologii podziału kolejnych zadań na odpowiednie branch'e, ponieważ nie było możliwości konfliktów ze względu na wspomnianą wyżej pracę jednoosobową. Kolejne funkcjonalności były dodawane w kodzie  na podstawie listy zadań istniejącej lokalnie. Z powodu ograniczonych możliwości technologicznych nie było również możliwości utworzenia testowego wdrożenia, więc istniał tylko jeden główny branch - main.
+
+W celu wytworzenia oprogramowania korzystano z wielu narzędzi informatycznych, między innymi: 
+\begin{itemize}
+    \item Pycharm - w celu napisania aplikacji w Pythonie
+    \item WebStorm - w celu napisania interfejsu użytkownika w TypeScript
+    \item Docker Desktop - w celu testowania
+    \item Hetzner - kupno i zarządzanie serwerem
+    \item Tabby terminal - łączenie z serwerem
+\end{itemize}
