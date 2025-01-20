@@ -17,6 +17,8 @@
 \langpol % Dla języka angielskiego mamy \langeng
 \graphicspath{{img/}}             % Katalog z obrazkami.
 \addbibresource{bibliografia.bib} % Plik .bib z bibliografią
+\usepackage{float}
+\usepackage{minted}
 
 \begin{document}
 
@@ -24,7 +26,7 @@
 % Strona tytułowa
 %--------------------------------------
 \EngineerThesis % Dla pracy inżynierskiej mamy \EngineerThesis
-\instytut{Informatyki i automatyki stosowanej}
+\instytut{Informatyki i Automatyki Stosowanej}
 \kierunek{Informatyka}
 \specjalnosc{Inżynieria oprogramowania}
 \title{
@@ -39,26 +41,7 @@
 \date{\the\year}
 \maketitle
 
-%--------------------------------------
-% Streszczenie po polsku
-%--------------------------------------
-\cleardoublepage % Zaczynamy od nieparzystej strony
-\streszczenie \lipsum[1-3]
-\slowakluczowe XXX, XXX, XXX
-
-%--------------------------------------
-% Streszczenie po angielsku
-%--------------------------------------
-\newpage
-\abstract \kant[1-3]
-\keywords XXX, XXX, XXX
-
-%--------------------------------------
-% Oświadczenie o autorstwie
-%--------------------------------------
-\cleardoublepage  % Zaczynamy od nieparzystej strony
-\pagestyle{plain}
-\makeauthorship
+\input{tex/001-streszczenia}
 
 %--------------------------------------
 % Spis treści
@@ -72,14 +55,15 @@
 \cleardoublepage % Zaczynamy od nieparzystej strony
 \pagestyle{headings}
 
-\input{tex/1-wprowadzenie}
-\input{tex/2-analiza-wymagań}
-\input{tex/3-metodologia-wytwarzania}
-\input{tex/4-definicja-architektury}
-\input{tex/5-wdrożenie}
-\input{tex/6-dane-trwałe}
-\input{tex/7-interfejs-użytkownika}
-\input{tex/8-instrukcja-administratora}
+\input{tex/01-wprowadzenie}
+\input{tex/02-analiza-wymagań}
+\input{tex/03-metodologia-wytwarzania}
+\input{tex/04-definicja-architektury}
+\input{tex/05-implementacja}
+\input{tex/06-wdrożenie}
+\input{tex/07-testowanie}
+\input{tex/08-monitorowanie-systemu}
+\input{tex/10-interfejs-użytkownika}
                             
 
 %--------------------------------------------
@@ -104,20 +88,19 @@
 % Makro \acronym dodaje skrót/symbol do listy,
 % zapewniając podstawowe formatowanie.
 % //AB
-\vspace{0.8cm}
-\acronymlist
-\acronym{EiTI}{Wydział Elektroniki i Technik Informacyjnych}
-\acronym{PW}{Politechnika Warszawska}
-\acronym{WEIRD}{ang. \emph{Western, Educated, Industrialized, Rich and Democratic}}
 
 \listoffigurestoc     % Spis rysunków.
 \vspace{1cm}          % vertical space
 \listoftablestoc      % Spis tabel.
 \vspace{1cm}          % vertical space
-\listofappendicestoc  % Spis załączników
+\listofappendicestoc
+W ramach pracy dołączono archiwum \texttt{kod.zip}, w którym znajdują się kod źródłowy podzielony na 3 foldery:
+\begin{itemize}
+   \item folder \texttt{back/} mający kod źródłowy aplikacji EMS-API,
+   \item folder \texttt{front/} mający kod źródłowy interfejsu użytkownika,
+   \item plik \texttt{dev-ops/} mający konfigurację środowiska wdrożeniowego.
+\end{itemize}
+Kod źródłowy dostępny jest również na publicznych github'ach:
 
-% Używając powyższych spisów jako szablonu,
-% możesz tu dodać swój własny wykaz bądź listę,
-% np. spis algorytmów.
 
 \end{document} % Dobranoc.
